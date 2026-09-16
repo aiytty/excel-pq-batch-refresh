@@ -1,0 +1,7 @@
+{
+  "display_name": "Excel PQ 批量刷新",
+  "display_name_en": "Excel PQ Batch Refresh",
+  "description_zh": "批量刷新文件夹内所有 Excel Power Query（含环境检查、.xlsm 化、VBA 宏注入、PAD 流程搭建指引、定时调度）",
+  "description_en": "Batch-refresh every Excel Power Query in a folder — env check, .xlsm prep, VBA macro injection, PAD flow guide, scheduling.",
+  "icon": "https://openplatform-cdn.codebuddy.cn/public/skills/icons/excel-pq-batch-refresh.svg"
+}
