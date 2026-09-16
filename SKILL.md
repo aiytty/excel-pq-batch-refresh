@@ -1,7 +1,7 @@
 ﻿---
 name: excel-pq-batch-refresh
 description: 批量刷新指定文件夹内所有 Excel Power Query 的全流程工作流（环境检查 + .xlsm 化 + VBA 宏注入 + PAD 流程搭建指引 + 定时调度）。触发场景：用户要求批量刷新 Power Query、定时刷新 Excel、PQ 自动刷新、用 Power Automate 刷新 Excel、批量刷新 Excel 数据、自动刷新 .xlsx 数据源、让表格自己定时更新。
-version: 1.4.2
+version: 1.4.3
 created: 2026-09-10
 # 注：以下字段（display_name / icon / visibility / triggers / inputs / outputs 等）
 # 是 WorkBuddy 平台规范所需的元数据，用于界面显示与导入，
@@ -339,7 +339,7 @@ $r | Out-File "$env:TEMP\step1-shortcut.txt" -Encoding utf8
 4. **跑完之后要做结果自检**（指南 3.9）——看 PAD 有没有报错、看 `.xlsm` 修改时间戳有没有变新、抽一张表打开看数据、**检查 Excel 进程有没有残留**。**"跑绿了"不等于"刷新成功了"**
 5. **⚠️ 运行中途不要点 ⏹ 停止**：停止只终止流程逻辑，**不会关闭它已经开出来的 Excel**，必然留下僵尸进程（会锁住文件）。真觉得卡住了，先由 agent 判断（单文件 60~90 秒属正常）
 
-**8 个动作速览**：① 获取文件夹中的文件（筛 `*.xlsm`）→ ② For each → ③ 启动 Excel（**新实例**）→ ④ 运行宏 `RefreshPowerQuery` → ⑤ 等待 15 秒 → ⑥ 保存 Excel → ⑦ 关闭 Excel（不保存）→ ⑧ **终止进程 `EXCEL`**（兜底清理残留壳，PAD 关闭动作关不干净进程，2026-09-15 实测）。
+**8 个动作速览**：① 获取文件夹中的文件（筛 `*.xlsm`）→ ② For each → ③ 启动 Excel（**新实例**）→ ④ 运行 Excel 宏 `RefreshPowerQuery` → ⑤ 等待 15 秒 → ⑥ 保存 Excel → ⑦ 关闭 Excel（不保存）→ ⑧ **终止进程 `EXCEL`**（兜底清理残留壳，PAD 关闭动作关不干净进程，2026-09-15 实测）。
 
 ---
 
